@@ -8,11 +8,9 @@ import { redirect } from "next/navigation";
 async function Page() {
 
     const user = await currentUser();
-
     if(!user) return null;
 
     const userInfo = await fetchUser(user.id);
-
     if(!userInfo?.onboarded) redirect('/onboarding');
 
     // Get Activity
@@ -30,7 +28,7 @@ async function Page() {
                     <article className="activity-card">
                       <Image
                         src={activity.author.image}
-                        alt="Profile Picture"
+                        alt="User_Logo"
                         width={20}
                         height={20}
                         className="rounded-full object-cover"

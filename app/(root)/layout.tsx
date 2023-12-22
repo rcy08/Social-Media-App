@@ -1,17 +1,19 @@
-import { ClerkProvider } from '@clerk/nextjs'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import '../globals.css'
-import Topbar from '@/components/shared/Topbar'
-import LeftSidebar from '@/components/shared/LeftSidebar'
-import RightSidebar from '@/components/shared/RightSidebar'
-import Bottombar from '@/components/shared/Bottombar'
+import React from 'react';
+import { ClerkProvider } from '@clerk/nextjs';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { dark } from "@clerk/themes";
+import '../globals.css';
+import Topbar from '@/components/shared/Topbar';
+import LeftSidebar from '@/components/shared/LeftSidebar';
+import RightSidebar from '@/components/shared/RightSidebar';
+import Bottombar from '@/components/shared/Bottombar';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Chatvibes',
-  description: 'A social media app'
+  title: 'Chatvibe',
+  description: 'A Social Media App'
 }
 
 export default function RootLayout({
@@ -20,7 +22,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="en">
         <body className={inter.className}>
           <Topbar />

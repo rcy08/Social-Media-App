@@ -1,5 +1,4 @@
 
-import PostThread from "@/components/forms/PostThread";
 import ProfileHeader from "@/components/shared/ProfileHeader";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
@@ -13,11 +12,9 @@ import ThreadsTab from "@/components/shared/ThreadsTab";
 async function Page({ params }: { params: { id: string } }) {
 
     const user = await currentUser();
-
     if(!user) return null;
 
     const userInfo = await fetchUser(params.id);
-
     if(!userInfo?.onboarded) redirect('/onboarding');
 
     return (
@@ -54,7 +51,11 @@ async function Page({ params }: { params: { id: string } }) {
                         ))}
                     </TabsList>
                     {profileTabs.map((tab) => (
-                        <TabsContent key={`content-${tab.label}`} value={tab.value} className="w-full text-light-1">
+                        <TabsContent 
+                            key={`content-${tab.label}`} 
+                            value={tab.value} 
+                            className="w-full text-light-1"
+                        >
                             <ThreadsTab
                                 currentUserId={user.id}
                                 accountId={userInfo.id}

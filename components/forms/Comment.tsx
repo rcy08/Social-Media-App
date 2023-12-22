@@ -3,10 +3,10 @@
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from '@hookform/resolvers/zod';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 // import { updateUser } from '@/lib/actions/user.actions';
 import { CommentValidation } from '@/lib/validations/thread';
@@ -32,7 +32,6 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
     });
 
     const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
-
         await addCommentToThread(threadId, values.thread, JSON.parse(currentUserId), pathname);
 
         form.reset();
